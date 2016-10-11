@@ -6,13 +6,23 @@ Dockerized version of the distribution in https://github.com/implydata/distribut
 
 Made for kubernetes imply kafka test
 
+## Verification environment
+
+* Ubuntu 16.04.1 LTS (Xenial Xerus)
+* Docker version 1.12.1, build 23cf638
+* VirtualBox 5.0.20 r106931
+* Vagrant 1.8.4
+* coreos-kubernetes vagrant info
+  - https://github.com/coreos/coreos-kubernetes
+  - https://github.com/coreos/coreos-kubernetes/tree/master/multi-node/vagrant
+
 # Usage:
 
 ## prerequsite
 
 * Set up git, wget and kubernetes
 * Set up coreos-vagrant
-** I use vagrant based on virtual box
+  - I use vagrant based on virtual box
 
 
 ## On kubernetes
@@ -54,8 +64,7 @@ $ kubectl create -f kafka-service.yaml
 ### Run kubernetes imply
 
 * Note
-
-** Setup expose ip on imply-dp
+  - Setup expose ip on imply-dp
 
 ```
 # kubectl run -i --image=taeminkwon/kubernetes-imply --port=9095 imply-dp
@@ -80,8 +89,7 @@ kafka-zoo-9118p             1/1       Running   0          17m
 #### Expose imply
 
 * Note
-
-** Setup external ip for pivot.
+  - Setup external ip for pivot.
 
 ```
 # kubectl expose deployment imply-dp --target-port=9095 --type=NodePort --external-ip=172.17.4.201
@@ -131,8 +139,7 @@ Run producer
 ##### Generate Sample Data
 
 * Note
-
-** Sample data send to tranquility kafka
+  - Sample data send to tranquility kafka
 
 Connect to imply container
 
