@@ -14,15 +14,15 @@ Made for kubernetes imply kafka test
 
 ## On kubernetes
 
-1. Run kubernetes zookeeper
+### Run kubernetes zookeeper
 
-1.1. get yaml file
+#### get yaml file
 
 ```
 # git clone https://github.com/taeminKwon/kubernetes-zookeeper/releases/tag/v3.4.6
 ```
 
-1.2. Run zoo replication controller and service
+#### Run zoo replication controller and service
 
 ```
 # cd kubernetes-zookeeper
@@ -30,15 +30,15 @@ Made for kubernetes imply kafka test
 # kubectl create -f zoo-service.yaml
 ```
 
-2. Run kubernetes kafka
+### Run kubernetes kafka
 
-2.1. get yaml file
+#### get yaml file
 
 ```
 # git clone https://github.com/taeminKwon/kubernetes-kafka/releases/tag/v0.9.0.1_tm
 ```
 
-2.2. Run kafka replication controller and service
+#### Run kafka replication controller and service
 
 ```
 # cd kubernetes-kafka
@@ -46,7 +46,7 @@ Made for kubernetes imply kafka test
 # kubectl create -f kafka-service.yaml
 ```
 
-3. Run kubernetes imply
+### Run kubernetes imply
 
 * Note
 ** Container 실행 및 외부 IP 로 expose 실행
@@ -57,9 +57,9 @@ Made for kubernetes imply kafka test
 Ctrl+C
 ```
 
-3.1. Run imply
+#### Run imply
 
-3.1.1. Check pod
+##### Check pod
 
 ```
 $ kubectl get pods
@@ -67,7 +67,7 @@ NAME                        READY     STATUS    RESTARTS   AGE
 imply-dp-1942981254-46vjn   1/1       Running   0          31s
 ```
 
-3.2. Expose imply
+#### Expose imply
 
 * Note
 ** Setup external ip for pivot.
@@ -76,7 +76,7 @@ imply-dp-1942981254-46vjn   1/1       Running   0          31s
 # kubectl expose deployment imply-dp --target-port=9095 --type=NodePort --external-ip=172.17.4.201
 ```
 
-3.3. Start imply service
+#### Start imply service
 
 ```
 $ kubectl exec imply-dp-1942981254-46vjn -it /bin/bash
@@ -84,12 +84,13 @@ $ kubectl exec imply-dp-1942981254-46vjn -it /bin/bash
 root@imply-dp-1942981254-46vjn:~/imply-1.1.0# bin/supervise -c conf/supervise/quickstart.conf
 ```
 
-4. Verify
+### Verify
 
 * Test imply kafka zookeeper test
 
-4.1. Imput tranquility kafka data
-4.1.1. Run kafka console producer
+#### Imput tranquility kafka data
+
+##### Run kafka console producer
 
 Check kafka pods
 
@@ -116,7 +117,7 @@ Run producer
 
 * producer 창을 그대로 둔 후 다른 터미널 Open
 
-4.1.2. Generate Sample Data
+##### Generate Sample Data
 
 * Note
 ** tranquility kafka 에 사용할 Sample Data 전송
@@ -128,8 +129,8 @@ $ kubectl exec imply-dp-1942981254-gs37x -it /bin/bash
 # bin/generate-example-metrics
 ```
 
-4.1.3. Input the generated date on kafka-console-producer terminal
+##### Input the generated date on kafka-console-producer terminal
 
-4.1.4. Check pivot
+##### Check pivot
 
 http://172.17.4.201:9095/pivot
